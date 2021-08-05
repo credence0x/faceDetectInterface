@@ -1,0 +1,71 @@
+<div class="custom-form">
+  <br><br>
+  <h3 style="text-align: center;"> Sign up </h3>
+
+  <form method="POST" action="create">
+    
+    
+  <% if (repopulate) { %>
+  <!-- Email -->
+  <div class="form-outline mb-4">
+
+    <label class="form-label" for="form2Example1">Email address</label>
+    <input type="email"  name="email" class="form-control" value="<%= repopulate.email %>" required/>
+  </div>
+    <!-- First Name -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">First Name</label>
+      <input type="text" name="first" class="form-control" value="<%= repopulate.first %>" required/>
+    </div>
+    <!--Last name -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Last Name</label>
+      <input type="text" name="last" class="form-control" value="<%= repopulate.last %>" required/>
+    </div>
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Password</label>
+      <input type="password" name="password" class="form-control" required/>
+    </div>
+
+  
+
+    <% } else { %>
+<!-- Email -->
+<div class="form-outline mb-4">
+  <label class="form-label" for="form2Example1">Email address</label>
+  <input type="email"  name="email" class="form-control" required/>
+</div>
+  <!-- First Name -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example1">First Name</label>
+    <input type="text" name="first" class="form-control" required/>
+  </div>
+  <!--Last name -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example2">Last Name</label>
+    <input type="text" name="last" class="form-control" required/>
+  </div>
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example2">Password</label>
+    <input type="password" name="password" class="form-control" required/>
+  </div>
+
+   
+    <% } %>
+    <!-- 2 column grid layout for inline styling -->
+  
+
+  <!-- Submit button -->
+  
+  <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+ 
+    <!-- Register buttons -->
+    <div class="text-center">
+      
+
+
+    </div>
+  </form>
+</div>
