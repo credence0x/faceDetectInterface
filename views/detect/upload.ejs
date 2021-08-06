@@ -15,7 +15,7 @@
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
         output.onload = function () {
-            URL.revokeObjectURL(output.src) // free memory
+            URL.revokeObjectURL(output.src) 
         }
     };
 
@@ -25,22 +25,22 @@
             $("#msg").html('<div class="alert alert-info"><i class="fa fa-spin fa-spinner"></i> Please wait...!</div>');
             $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:8000/api/detect/",
+                url: "http://127.0.0.1:8000/api/detect/", //test to find out if django app works
                 crossDomain: true,
-                data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-                contentType: false, // The content type used when sending data to the server.
-                // cache: false, // To unable request pages to be cached
+                data: new FormData(this), 
+                contentType: false, 
                 processData: false, //Preventing default data parse behavior
                 success: function (data) {
+                    // data == new_processed_image
                     console.log(data)
                     $('#here').html('<img src="data:image/*;base64,' + data + '" />');
                     $("#msg").html(
-                            '<div class="alert alert-success"><i class="fa fa-thumbs-up"></i> Data updated successfully.</div>'
+                            '<div class="alert alert-success"><i class="fa fa-thumbs-up"></i> Processed image received </div>'
                         );
     
                 },
-                error: function (data) {
-                    console.log(data)
+                error: function (err) {
+                    console.log(err)
                     $("#msg").html(
                         '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> There is something wrong.</div>'
                     );
