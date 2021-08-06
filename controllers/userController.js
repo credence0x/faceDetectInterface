@@ -35,7 +35,7 @@ module.exports = {
             if (err) { next(err) }
             else if (!user) {
                 req.flash("error", info.message)
-                res.locals.redirect = "/login"
+                res.locals.redirect = "/users/login"
                 next()
             } else {
                 req.logIn(user, (err) => {
