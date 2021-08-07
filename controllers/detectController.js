@@ -5,7 +5,7 @@ module.exports = {
         superagent
             .get(`http://${django}/api/detect`)
             .end((err, res) => {
-                console.log(res.body)
+                console.log(res)
             })
         res.render("detect/upload")
     },

@@ -1,43 +1,50 @@
 <div>
     <div id="msg"></div>
     <form method="POST" id="image-form" enctype="multipart/form-data" onSubmit="return false;">
-        <input type="file" name="image" accept="image/*">
-        <!--onchange="loadFile(event)"-->
-        <input type="submit">
+        <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
+        <!---->
+        <!-- <input type="submit"> -->
     </form>
 </div>
-<div id="here"></div>
-<img id="output" />
+<div id="here">
+    <img id="output" />
+</div>
+
 
 
 <script>
+    var i = 0
     var loadFile = function (event, ajax_image = false) {
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function () {
-            URL.revokeObjectURL(output.src) 
-        }
+        // if (!i) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src)
+            }
+        // }
+        // i += 1
+        $('#image-form').submit()
     };
 
-  
+
     $(document).ready(function (e) {
         $("#image-form").on("submit", function () {
             $("#msg").html('<div class="alert alert-info"><i class="fa fa-spin fa-spinner"></i> Please wait...!</div>');
             $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:8000/api/detect/", //test to find out if django app works
+                url: "http://127.0.0.1:8000/api/detect/", //test to see if django app works
                 crossDomain: true,
-                data: new FormData(this), 
-                contentType: false, 
+                data: new FormData(this),
+                contentType: false,
                 processData: false, //Preventing default data parse behavior
                 success: function (data) {
                     // data == new_processed_image
                     console.log(data)
-                    $('#here').html('<img src="data:image/*;base64,' + data + '" />');
+                    $('#here').html('<img id="output" src="data:image/*;base64,' + data + '" />');
                     $("#msg").html(
-                            '<div class="alert alert-success"><i class="fa fa-thumbs-up"></i> Processed image received </div>'
-                        );
-    
+                        '<div class="alert alert-success"><i class="fa fa-thumbs-up"></i> Processed image received </div>'
+                    );
+
                 },
                 error: function (err) {
                     console.log(err)
