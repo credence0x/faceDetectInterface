@@ -1,7 +1,9 @@
 <div>
-    <div id="msg"></div>
+    <div id="msg"> </div>
     <form method="POST" id="image-form" enctype="multipart/form-data" onSubmit="return false;">
         <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
+        <input type="hidden" name="token" value="<%= token %>">
+        <input type="hidden" name="user_id" value="<%= currentUser._id %>">
         <!---->
         <!-- <input type="submit"> -->
     </form>
@@ -12,15 +14,17 @@
 
 
 
+
+
 <script>
     var i = 0
     var loadFile = function (event, ajax_image = false) {
         // if (!i) {
-            var output = document.getElementById('output');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            output.onload = function () {
-                URL.revokeObjectURL(output.src)
-            }
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src)
+        }
         // }
         // i += 1
         $('#image-form').submit()
@@ -38,16 +42,21 @@
                 contentType: false,
                 processData: false, //Preventing default data parse behavior
                 success: function (data) {
-                    // data == new_processed_image
                     console.log(data)
-                    $('#here').html('<img id="output" src="data:image/*;base64,' + data + '" />');
-                    $("#msg").html(
-                        '<div class="alert alert-success"><i class="fa fa-thumbs-up"></i> Processed image received </div>'
-                    );
-
+                    if (data.success) {
+                        let faces = data.number_of_faces;
+                        $('#here').html('<img id="output" src="data:image/*;base64,' + data.image + '" />');
+                        $("#msg").html(
+                            '<div class="alert alert-success"><i class="fa fa-thumbs-up"></i><b> &emsp; &emsp;' + faces + ' faces found </b></div>'
+                        );
+                    } else {
+                        $("#msg").html(
+                            '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> ' + data.message + '.</div>'
+                        );
+                    }
                 },
                 error: function (err) {
-                    console.log(err)
+                    console.errpr(err)
                     $("#msg").html(
                         '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> There is something wrong.</div>'
                     );
