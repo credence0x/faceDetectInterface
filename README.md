@@ -3,7 +3,7 @@ Hey there :wave: :grinning:. <br><br>
 This is the first of two parts of a loosely coupled application.
 
 It is a face detection application and consists of;<br>
-      <br>a) an interface that the user communicates with (this past)
+      <br>a) an interface that the user communicates with (<a href="https://github.com/ojetokun/face-detect-function">this part</a>)
       <br>b) a machine learning function that interpretes the images sent by the interface.
 <br><br>
  
