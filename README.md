@@ -4,7 +4,8 @@ This is the first of two parts of a loosely coupled application.
 
 It is a face detection application and consists of;<br>
       <br>a) an interface that the user communicates with ( this part )
-      <br>b) a machine learning function that interpretes the images sent by the interface (<a href="https://github.com/ojetokun/face-detect-function">which can be found here</a>)
+      <br>b) a machine learning function that interpretes the images sent by the interface 
+      (<a href="https://github.com/ojetokun/face-detect-function"> which can be found here </a>)
 <br><br>
  
 This part is the interface the user communicates with directly. It has a user model that stores user information and authenticates the user in this app and through an api function from the other (django function) app.
