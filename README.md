@@ -14,6 +14,7 @@ This part is the interface the user communicates with directly. It has a user mo
 The interface will primarily communicate with the machine learning model (the second part) through api calls and will display the results after being analysed by the second part.
 The interface is written in javascript node.js and the other side is written in python django. <br>The reason for writing the machine learning functions in python is that python has more support and is easier to use for data science. <br> I have also been using python for data science for a while so that seemed to be a better option.
 <br><br>
-Note: The project has been completed but has been removed from production due to cost of management  but a picture of it working can be found at https://twitter.com/ojetokunlanre/status/1424799067461210141/photo/1
+Note: The project has been completed but has been removed from production due to cost of management  but a picture of it working can be found below
 <br><br>
+![Faces Detected Image](faces_detected.jpg?raw=true "Face Detect")
 
